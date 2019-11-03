@@ -1,0 +1,8 @@
+node_modules
+storage/import
+storage/JSON
+storage/logs
+storage/framework/cache
+.vscode
+.env
+vendor
