@@ -49,36 +49,40 @@ class StartTasks extends Command
 
     public function handle()
     {
-        $Start = time();
-
-        $Task = ImportTask::where('status', 1)->orderBy('id', 'asc')->first();
-        if (!$Task) {
-            $this->info('Нет задач для выполнения');
-            return;
-        }
+        $ProcessTask = ImportTask::where('status', 2)->orderBy('id', 'asc')->first();
+        if ($ProcessTask) {
+            $this->info('Одна из задач уже выполняется, закрытие задачи.');
+        } else {
+            $Start = time();
+            $Task = ImportTask::where('status', 1)->orderBy('id', 'asc')->first();
+            if (!$Task) {
+                $this->info('Нет задач для выполнения');
+                return;
+            }
         
-        $this->info('Выполнение задачи номер ' . $Task->id);
-        $Task->setStatus(2);
-        switch ($Task->task) {
-            case 'import': 
-                $this->info('Тип задачи: Импорт данных, выполняется...');
-                $this->call('start:import');
-            break;
-            case 'cache': 
-                $this->info('Тип задачи: Кеширование данных, выполняется...');
-                $this->call('start:cache');    
-            break;
-            case 'clear':
-                $this->info('Тип задачи: Очистка данных, выполняется...');
-                $this->call('start:clear');
-            break;
-        }
-        $Finish = time();
-        $Task->setStatus(3);
-        $Task->setCompleteDate();
-        $Task->setTime( ((($Finish - $Start) / 60) . ' мин.') );
+            $this->info('Выполнение задачи номер ' . $Task->id);
+            $Task->setStatus(2);
+            switch ($Task->task) {
+                case 'import': 
+                    $this->info('Тип задачи: Импорт данных, выполняется...');
+                    $this->call('start:import');
+                break;
+                case 'cache': 
+                    $this->info('Тип задачи: Кеширование данных, выполняется...');
+                    $this->call('start:cache');    
+                break;
+                case 'clear':
+                    $this->info('Тип задачи: Очистка данных, выполняется...');
+                    $this->call('start:clear');
+                break;
+            }
+            $Finish = time();
+            $Task->setStatus(3);
+            $Task->setCompleteDate();
+            $Task->setTime( ((($Finish - $Start) / 60) . ' мин.') );
 
-        $this->info(PHP_EOL);
-        $this->info('Задача выполненна, затрачено времени: ' . (($Finish - $Start) / 60) . ' мин.');
+            $this->info(PHP_EOL);
+            $this->info('Задача выполненна, затрачено времени: ' . (($Finish - $Start) / 60) . ' мин.');
+        }
     }
 }
