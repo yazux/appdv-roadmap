@@ -64,9 +64,9 @@ class ImportCurves extends Command
     {
         $curves = $Importer->getCurves($Road['id']);
 
+        $Curves = [];
         if ($curves && count($curves)) {
             $bar = $context->output->createProgressBar(count($curves));
-            $Curves = [];
             $this->info('[Импорт прямых участков]: Импорт участков');
             foreach($curves as $curve) {
                 $curve = [

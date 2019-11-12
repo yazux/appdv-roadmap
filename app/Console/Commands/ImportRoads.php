@@ -43,8 +43,8 @@ class ImportRoads extends Command
         $Importer = new RoadImporter($Reader);
         $roads = $Importer->getRoadsInFile();
 
+        $Roads = [];
         if ($roads && count($roads)) {
-            $Roads = [];
             $this->info('[Импорт дорог]: Файл прочитан, количество дорог: ' . count($roads));
             $bar = $this->output->createProgressBar(count($roads));
             foreach ($roads as $road) {

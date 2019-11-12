@@ -83,56 +83,52 @@ class BuildJson extends Command
         $FullStart = time();
         
     
-        /* *
-        //Построение кеша треков
-        $start = time();
-        $this->info('[Построение кеша треков]: Старт...');
-        foreach($ZoomSteps as $zoom => $step) {
-            $this->info('[Построение кеша треков]: зум: ' . $zoom . ', шаг: ' .  $step);
-            $this->buildTracksJSON($this, $zoom, $step);
-        }
-        $finish = time();
-        $this->info('[Построение кеша треков]: Готово, затрачено времени: ' . (($finish - $start) / 60) . ' мин.');
-        /* */
-
-        /* *
-        //Построение кеша покрытий
-        $start = time();
-        $this->info('[Построение кеша покрытий]: Старт...');
-        foreach($ZoomSteps as $zoom => $step) {
-            $this->info('[Построение кеша покрытий]: зум: ' . $zoom . ', шаг: ' .  $step);
-            $this->buildCoversJSON($this, $zoom, $step);
-        }
-        $finish = time();
-        $this->info('[Построение кеша покрытий]: Готово, затрачено времени: ' . (($finish - $start) / 60) . ' мин.');
-        /* */
-
-
-        /*  *
-        //Построение кеша категорий
-        $start = time();
-        $this->info('[Построение кеша категорий]: Старт...');        
-        foreach($ZoomSteps as $zoom => $step) {
-            $this->info('[Построение кеша категорий]: зум: ' . $zoom . ', шаг: ' .  $step);
-            $Categories = $this->buildCategoriesJSON($this, $zoom, $step);
-        }
-        $finish = time();
-        $this->info('[Построение кеша категорий]: Готово, затрачено времени: ' . (($finish - $start) / 60) . ' мин.');
-        /* *
-
+        //Старая логика для Яндекс карты
+        /*
+            //Построение кеша треков
+            $start = time();
+            $this->info('[Построение кеша треков]: Старт...');
+            foreach($ZoomSteps as $zoom => $step) {
+                $this->info('[Построение кеша треков]: зум: ' . $zoom . ', шаг: ' .  $step);
+                $this->buildTracksJSON($this, $zoom, $step);
+            }
+            $finish = time();
+            $this->info('[Построение кеша треков]: Готово, затрачено времени: ' . (($finish - $start) / 60) . ' мин.');
+            
+            //Построение кеша покрытий
+            $start = time();
+            $this->info('[Построение кеша покрытий]: Старт...');
+            foreach($ZoomSteps as $zoom => $step) {
+                $this->info('[Построение кеша покрытий]: зум: ' . $zoom . ', шаг: ' .  $step);
+                $this->buildCoversJSON($this, $zoom, $step);
+            }
+            $finish = time();
+            $this->info('[Построение кеша покрытий]: Готово, затрачено времени: ' . (($finish - $start) / 60) . ' мин.');
         
-        //Построение кеша диагностики
-        $start = time();
-        $this->info('[Построение кеша диагностики]: Старт...');
-        foreach($ZoomSteps as $zoom => $step) {
-            $this->info('[Построение кеша диагностики]: зум: ' . $zoom . ', шаг: ' .  $step);
-            $this->buildDiagnosticJSON($this, $zoom, $step);
-        }
-        $finish = time();
-        $this->info('[Построение кеша диагностики]: Готово, затрачено времени: ' . (($finish - $start) / 60) . ' мин.');
-        /* */
+            
+            //Построение кеша категорий
+            $start = time();
+            $this->info('[Построение кеша категорий]: Старт...');        
+            foreach($ZoomSteps as $zoom => $step) {
+                $this->info('[Построение кеша категорий]: зум: ' . $zoom . ', шаг: ' .  $step);
+                $Categories = $this->buildCategoriesJSON($this, $zoom, $step);
+            }
+            $finish = time();
+            $this->info('[Построение кеша категорий]: Готово, затрачено времени: ' . (($finish - $start) / 60) . ' мин.');
+                
+            //Построение кеша диагностики
+            $start = time();
+            $this->info('[Построение кеша диагностики]: Старт...');
+            foreach($ZoomSteps as $zoom => $step) {
+                $this->info('[Построение кеша диагностики]: зум: ' . $zoom . ', шаг: ' .  $step);
+                $this->buildDiagnosticJSON($this, $zoom, $step);
+            }
+            $finish = time();
+            $this->info('[Построение кеша диагностики]: Готово, затрачено времени: ' . (($finish - $start) / 60) . ' мин.');
+        */
 
 
+        //Просто треки сейчас не выводятся на карте, так что нет смысла строить кеш
         //$this->info('[Построение кеша треков]');
         //$this->buildTracksJSONOSM($this);
         

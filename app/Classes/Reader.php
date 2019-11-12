@@ -15,7 +15,7 @@ class Reader
 
     public function __construct()
     {
-        $this->importPath = storage_path() . '/import/';
+        $this->importPath = storage_path() . '/app/public/import/';
         $this->files = scandir($this->importPath, 1);
     }
 

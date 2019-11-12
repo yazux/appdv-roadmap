@@ -46,9 +46,9 @@ class ImportCoversType extends Command
         $Reader   = new Reader();
         $Importer = new CoversTypeImporter($Reader);
         $Types = $Importer->getCoversTypes();
+        $Count = 0;
         if ($Types && count($Types)) {
             $this->info('[Импорт типов покрытий]: Файл прочитан, количество типов: ' . count($Types));
-            $Count = 0;
             $bar = $this->output->createProgressBar(count($Types));
             foreach ($Types as $Type) {
                 $Importer->addCoversType($Type);

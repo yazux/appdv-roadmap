@@ -47,9 +47,9 @@ class ImportRoadCategoryType extends Command
         $Importer = new RoadCategoryTypeImporter($Reader);
         $Types = $Importer->getRoadCategoryTypes();
 
+        $Count = 0;
         if ($Types && count($Types)) {
             $this->info('[Импорт категорий дорог]: Файл прочитан, количество категорий: ' . count($Types));
-            $Count = 0;
             $bar = $this->output->createProgressBar(count($Types));
             foreach ($Types as $Type) {
                 $Importer->addRoadCategoryType($Type);
