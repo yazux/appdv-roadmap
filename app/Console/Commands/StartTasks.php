@@ -79,7 +79,8 @@ class StartTasks extends Command
             $Finish = time();
             $Task->setStatus(3);
             $Task->setCompleteDate();
-            $Task->setTime( ((($Finish - $Start) / 60) . ' мин.') );
+            $time = ceil(((($Finish - $Start) / 60) . ' мин.'));
+            $Task->setTime($time);
 
             $this->info(PHP_EOL);
             $this->info('Задача выполненна, затрачено времени: ' . (($Finish - $Start) / 60) . ' мин.');
